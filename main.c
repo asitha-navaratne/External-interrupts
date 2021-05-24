@@ -5,7 +5,7 @@
 
 #define LED_DDR		DDRB					///< DDR of indicator LED.
 #define LED_PORT	PORTB					///< Port of indicator LED.
-#define LED_PIN		PB0						///< Pin of indicator LED.
+#define LED_PIN		PB0					///< Pin of indicator LED.
 
 void PORT_INIT(void);
 void INT_INIT(void);
@@ -30,7 +30,7 @@ ISR(INT0_vect){
 int main(void){
 	PORT_INIT();
 	INT_INIT();
-	sei();									///< Enable global interrupts.
+	sei();							///< Enable global interrupts.
 	
 	while(1);
 }
@@ -41,7 +41,7 @@ int main(void){
 
 void PORT_INIT(void){
 	LED_DDR |= (1<<LED_PIN);
-	DDRD &= ~(1<<PD2);						///< Set INT0 pin to input.
+	DDRD &= ~(1<<PD2);					///< Set INT0 pin to input.
 }
 
 /*!
@@ -49,6 +49,6 @@ void PORT_INIT(void){
  */
 
 void INT_INIT(void){
-	MCUCR |= (1<<ISC00)|(1<<ISC01);		///< A rising edge at INT0 generates an interrupt request.
-	GICR |= (1<<INT0);						///< Enable INT0 external interrupt request.
+	MCUCR |= (1<<ISC00)|(1<<ISC01);				///< A rising edge at INT0 generates an interrupt request.
+	GICR |= (1<<INT0);					///< Enable INT0 external interrupt request.
 }
